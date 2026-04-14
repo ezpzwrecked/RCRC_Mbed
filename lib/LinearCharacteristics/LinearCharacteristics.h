@@ -5,6 +5,7 @@ class LinearCharacteristics
 public:
     LinearCharacteristics() {};          // default constructor
     LinearCharacteristics(float, float); // constructor with gain and offset
+    LinearCharacteristics(float, float, float, float); // constructor with input min/max and output min/max
 
     float evaluate(float); // calculate y(x)
     float operator()(float x) { return evaluate(x); }

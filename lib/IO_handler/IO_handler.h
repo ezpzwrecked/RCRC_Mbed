@@ -23,4 +23,5 @@ private:
     AnalogIn m_a_in2;
     DigitalOut m_d_out;
     float m_set_value;
+    LinearCharacteristics lc_out, lc_in;
 };

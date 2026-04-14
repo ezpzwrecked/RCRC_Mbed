@@ -11,18 +11,20 @@ IO_handler::IO_handler(void)
 {
     m_a_out.write(0.0f);
     m_set_value = 0.0f;
+    lc_out = LinearCharacteristics(-1.0f, 1.0f, 0, 1.0f);
+    lc_in = LinearCharacteristics(0, 1.0f, -1.0f, 1.0f);
 }
 
 IO_handler::~IO_handler() {}
 
-float IO_handler::read_ain1(void) { return m_a_in1.read(); }
+float IO_handler::read_ain1(void) { return lc_in(m_a_in1.read()); }
 
-float IO_handler::read_ain2(void) { return m_a_in2.read(); }
+float IO_handler::read_ain2(void) { return lc_in(m_a_in2.read()); }
 
 void IO_handler::write_aout(float output)
 {
-    m_set_value = output;
-    m_a_out.write(m_set_value);
+    m_set_value = output;           // Store the original command value (-1..1)
+    m_a_out.write(lc_out(m_set_value));  // Write the transformed value (0..1) -> 0..3.3V
 }
 
 float IO_handler::get_set_value() { return m_set_value; }
