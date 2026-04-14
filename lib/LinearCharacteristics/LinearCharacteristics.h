@@ -5,16 +5,21 @@ class LinearCharacteristics
 public:
     LinearCharacteristics() {};          // default constructor
     LinearCharacteristics(float, float); // constructor with gain and offset
-    LinearCharacteristics(float, float, float, float); // constructor with input min/max and output min/max
+    // --- P1, AUFGABE 1.5 ---
+    // constructor with min/max values
+    LinearCharacteristics(float, float, float, float); // constructor with min/max values
+    virtual ~LinearCharacteristics();                  // deconstructor
 
-    float evaluate(float); // calculate y(x)
     float operator()(float x) { return evaluate(x); }
-    virtual ~LinearCharacteristics(); // deconstructor
+
+    void init(float, float);               // set gain and offset
+    void init(float, float, float, float); // set gain and offset based on min/max values
+    float evaluate(float);                 // calculate y(x)
     void set_limits(float, float);
 
 private:
-    float m_gain;
-    float m_offset;
-    float m_ulim;
-    float m_llim;
+    float m_gain{0.0f};
+    float m_offset{0.0f};
+    float m_ulim{0.0f};
+    float m_llim{0.0f};
 };

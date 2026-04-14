@@ -36,7 +36,7 @@ void realtime_thread::loop(void)
 
     while (true) {
         ThisThread::flags_wait_any(m_ThreadFlag);
-        time = 1e-6f * (float)(duration_cast<microseconds>(m_Timer.elapsed_time()).count());
+        const float time = 1e-6f * (float)(duration_cast<microseconds>(m_Timer.elapsed_time()).count());
         // --------------------- THE LOOP ---------------------
 
         float w = myDataLogger.get_set_value(time); // get set values from the GUI
@@ -49,10 +49,10 @@ void realtime_thread::loop(void)
 
         /*u = myDataLogger.get_set_value(time); // get set values from the GUI
 
-        y1 = m_IO_handler->read_ain1(); // read 1st voltage
-        y2 = m_IO_handler->read_ain2(); // read 2nd voltage
+        const float y1 = m_IO_handler->read_ain1(); // read 1st voltage
+        const float y2 = m_IO_handler->read_ain2(); // read 2nd voltage
 
-        m_IO_handler->write_aout(u); // write to analog output
+        // m_IO_handler->write_aout(w); // write to analog output
 
         myDataLogger.write_to_log(time, u, y1, y2, 0.0f, 0.0f, 0.0f);
         */

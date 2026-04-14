@@ -6,12 +6,12 @@ addpath app/
 
 % You might want to use the following code later.
 
-% fprintf('K << %1.3ff, %1.3ff;\n', K(1), K(2));
+% fprintf('Matrix<float, 1, 2> K(%1.4ff, %1.4ff);\n', K(1), K(2));
 
-% fprintf('A << %1.3ff, %1.3ff, %1.3ff, %1.3ff;\n', A(1,1), A(1,2), A(2,1), A(2,2));
-% fprintf('B << %1.3ff, %1.3ff;\n', B(1), B(2));
-% fprintf('C << %1.3ff, %1.3ff;\n', C(1,1), C(1,2));
-% fprintf('H << %1.3ff, %1.3ff;\n', H(1), H(2));
+% fprintf('m_A << %1.3ff, %1.3ff, %1.3ff, %1.3ff;\n', A(1,1), A(1,2), A(2,1), A(2,2));
+% fprintf('m_B << %1.3ff, %1.3ff;\n', B(1), B(2));
+% fprintf('m_C << %1.3ff, %1.3ff;\n', C(1,1), C(1,2));
+% fprintf('m_H << %1.3ff, %1.3ff;\n', H(1), H(2));
 
 
 %% Intro to C++ and Mbed

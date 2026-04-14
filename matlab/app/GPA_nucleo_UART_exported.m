@@ -4,12 +4,12 @@ classdef GPA_nucleo_UART_exported < matlab.apps.AppBase
     properties (Access = public)
         NucleoconnectionUIFigure  matlab.ui.Figure
         IOValuesPanel             matlab.ui.container.Panel
-        in2EditField              matlab.ui.control.NumericEditField
-        in2EditFieldLabel         matlab.ui.control.Label
-        in1EditField              matlab.ui.control.NumericEditField
-        in1EditFieldLabel         matlab.ui.control.Label
-        outEditField              matlab.ui.control.NumericEditField
-        outEditFieldLabel         matlab.ui.control.Label
+        In2EditField              matlab.ui.control.NumericEditField
+        In2Label                  matlab.ui.control.Label
+        In1EditField              matlab.ui.control.NumericEditField
+        In1Label                  matlab.ui.control.Label
+        OutEditField              matlab.ui.control.NumericEditField
+        OutEditFieldLabel         matlab.ui.control.Label
         IdType1plantcl2plantol3posplantclLabel  matlab.ui.control.Label
         GPAPanel                  matlab.ui.container.Panel
         gpa_meas_startButton      matlab.ui.control.Button
@@ -346,9 +346,9 @@ classdef GPA_nucleo_UART_exported < matlab.apps.AppBase
                                     switch app.loc_data(k).id2
                                         case 1
                                             val = double(typecast(uint8(app.loc_data(k).grab), 'single'))';
-                                            app.outEditField.Value = val(1);
-                                            app.in1EditField.Value = val(2);
-                                            app.in2EditField.Value = val(3);
+                                            app.OutEditField.Value = val(1);
+                                            app.In1EditField.Value = val(2);
+                                            app.In2EditField.Value = val(3);
                                     end
                                 case 202
                                     val = double(typecast(uint8(app.loc_data(k).grab), 'single'))';
@@ -470,12 +470,10 @@ classdef GPA_nucleo_UART_exported < matlab.apps.AppBase
 
             % Create NucleoconnectionUIFigure and hide until all components are created
             app.NucleoconnectionUIFigure = uifigure('Visible', 'off');
-            app.NucleoconnectionUIFigure.AutoResizeChildren = 'off';
             colormap(app.NucleoconnectionUIFigure, 'parula');
-            app.NucleoconnectionUIFigure.Position = [300 300 623 334];
+            app.NucleoconnectionUIFigure.Position = [300 300 652 334];
             app.NucleoconnectionUIFigure.Name = 'Nucleo connection';
             app.NucleoconnectionUIFigure.Icon = 'nuc.jpg';
-            app.NucleoconnectionUIFigure.Resize = 'off';
             app.NucleoconnectionUIFigure.CloseRequestFcn = createCallbackFcn(app, @NucleoconnectionUIFigureCloseRequest, true);
 
             % Create SearchCOMPortsButton
@@ -531,7 +529,6 @@ classdef GPA_nucleo_UART_exported < matlab.apps.AppBase
 
             % Create TimemeasuresPanel
             app.TimemeasuresPanel = uipanel(app.NucleoconnectionUIFigure);
-            app.TimemeasuresPanel.AutoResizeChildren = 'off';
             app.TimemeasuresPanel.Title = 'Time measures';
             app.TimemeasuresPanel.Position = [293 27 198 159];
 
@@ -623,12 +620,11 @@ classdef GPA_nucleo_UART_exported < matlab.apps.AppBase
             app.TxtOutput.FontSize = 11;
             app.TxtOutput.FontColor = [0 1 0];
             app.TxtOutput.BackgroundColor = [0 0 0];
-            app.TxtOutput.Position = [293 198 318 126];
+            app.TxtOutput.Position = [293 198 349 126];
             app.TxtOutput.Value = {'Nucleo Communication'; '--------------------'};
 
             % Create GPAPanel
             app.GPAPanel = uipanel(app.NucleoconnectionUIFigure);
-            app.GPAPanel.AutoResizeChildren = 'off';
             app.GPAPanel.Title = 'GPA';
             app.GPAPanel.Position = [12 27 258 159];
 
@@ -762,46 +758,42 @@ classdef GPA_nucleo_UART_exported < matlab.apps.AppBase
 
             % Create IOValuesPanel
             app.IOValuesPanel = uipanel(app.NucleoconnectionUIFigure);
-            app.IOValuesPanel.AutoResizeChildren = 'off';
             app.IOValuesPanel.Title = 'I/O Values';
-            app.IOValuesPanel.Position = [511 27 100 159];
+            app.IOValuesPanel.Position = [511 27 131 159];
 
-            % Create outEditFieldLabel
-            app.outEditFieldLabel = uilabel(app.IOValuesPanel);
-            app.outEditFieldLabel.HorizontalAlignment = 'right';
-            app.outEditFieldLabel.Position = [2 97 25 22];
-            app.outEditFieldLabel.Text = 'out';
+            % Create OutEditFieldLabel
+            app.OutEditFieldLabel = uilabel(app.IOValuesPanel);
+            app.OutEditFieldLabel.HorizontalAlignment = 'right';
+            app.OutEditFieldLabel.Position = [21 97 25 22];
+            app.OutEditFieldLabel.Text = 'Out';
 
-            % Create outEditField
-            app.outEditField = uieditfield(app.IOValuesPanel, 'numeric');
-            app.outEditField.Limits = [-5000 5000];
-            app.outEditField.ValueDisplayFormat = '%.3f';
-            app.outEditField.Position = [38 97 49 22];
-            app.outEditField.Value = 1;
+            % Create OutEditField
+            app.OutEditField = uieditfield(app.IOValuesPanel, 'numeric');
+            app.OutEditField.ValueDisplayFormat = '%.3f';
+            app.OutEditField.Position = [54 97 69 22];
 
-            % Create in1EditFieldLabel
-            app.in1EditFieldLabel = uilabel(app.IOValuesPanel);
-            app.in1EditFieldLabel.HorizontalAlignment = 'right';
-            app.in1EditFieldLabel.Position = [-6 67 34 22];
-            app.in1EditFieldLabel.Text = 'in1';
+            % Create In1Label
+            app.In1Label = uilabel(app.IOValuesPanel);
+            app.In1Label.HorizontalAlignment = 'right';
+            app.In1Label.Position = [22 67 25 22];
+            app.In1Label.Text = 'In1';
 
-            % Create in1EditField
-            app.in1EditField = uieditfield(app.IOValuesPanel, 'numeric');
-            app.in1EditField.ValueDisplayFormat = '%.3f';
-            app.in1EditField.Position = [38 70 49 22];
-            app.in1EditField.Value = 5;
+            % Create In1EditField
+            app.In1EditField = uieditfield(app.IOValuesPanel, 'numeric');
+            app.In1EditField.ValueDisplayFormat = '%.3f';
+            app.In1EditField.Position = [54 70 69 22];
 
-            % Create in2EditFieldLabel
-            app.in2EditFieldLabel = uilabel(app.IOValuesPanel);
-            app.in2EditFieldLabel.HorizontalAlignment = 'right';
-            app.in2EditFieldLabel.Position = [4 40 25 22];
-            app.in2EditFieldLabel.Text = 'in2';
+            % Create In2Label
+            app.In2Label = uilabel(app.IOValuesPanel);
+            app.In2Label.HorizontalAlignment = 'right';
+            app.In2Label.Position = [23 40 25 22];
+            app.In2Label.Text = 'In2';
 
-            % Create in2EditField
-            app.in2EditField = uieditfield(app.IOValuesPanel, 'numeric');
-            app.in2EditField.Limits = [-1000 1000];
-            app.in2EditField.ValueDisplayFormat = '%.3f';
-            app.in2EditField.Position = [38 43 50 22];
+            % Create In2EditField
+            app.In2EditField = uieditfield(app.IOValuesPanel, 'numeric');
+            app.In2EditField.Limits = [-1000 1000];
+            app.In2EditField.ValueDisplayFormat = '%.3f';
+            app.In2EditField.Position = [54 43 70 22];
 
             % Show the figure after all components are created
             app.NucleoconnectionUIFigure.Visible = 'on';

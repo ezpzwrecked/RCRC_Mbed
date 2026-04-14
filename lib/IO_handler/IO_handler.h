@@ -23,5 +23,7 @@ private:
     AnalogIn m_a_in2;
     DigitalOut m_d_out;
     float m_set_value;
-    LinearCharacteristics lc_out, lc_in;
+    // --- P1, AUFGABE 1.6 & 1.7 ---
+    // add linear characteristics for input and output
+    LinearCharacteristics m_lc_out, m_lc_in;
 };
